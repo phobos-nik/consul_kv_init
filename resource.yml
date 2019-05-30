@@ -1,2 +1,20 @@
 server:
   port: 8080
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        tags: app, resource
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 30s
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER_NAME}
+    password: ${MYSQL_USER_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
